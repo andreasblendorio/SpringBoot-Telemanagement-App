@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.demo.dummies;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,12 +6,10 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class DummyAddress {
+public class DummyHobby {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String city;
-
+    private String hobby;
 }

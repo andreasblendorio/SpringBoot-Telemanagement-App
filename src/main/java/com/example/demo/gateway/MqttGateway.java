@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.gateway;
 
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.mqtt.support.MqttHeaders;

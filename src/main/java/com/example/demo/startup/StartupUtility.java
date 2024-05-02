@@ -1,9 +1,6 @@
 package com.example.demo.startup;
 
-import com.example.demo.MqttBeans;
-import com.example.demo.entities.City;
-import com.example.demo.entities.DummyEntity;
-import com.example.demo.repos.CityRepo;
+import com.example.demo.dummies.DummyEntity;
 import com.example.demo.repos.DummyRepo;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +18,7 @@ public class StartupUtility implements CommandLineRunner {
 
     @Value("${demo.json.string}") private String json;
 
-    //@Autowired private CityRepo repo;
+    //@Autowired private CityWeatherRepo repo;
 
     @Autowired private DummyRepo repo;
 
@@ -34,14 +31,12 @@ public class StartupUtility implements CommandLineRunner {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         // Getting the json + Converting into the City Class
-        DummyEntity value = mapper.readValue(json, DummyEntity.class); // input: json in string format, output: OpenAPI/City Class
+        DummyEntity value = mapper.readValue(json, DummyEntity.class); // input: json in string format, output: OpenAPI/CityEntity (class)
 
         // Saving
         DummyEntity save = repo.save(value);
 
         // Checking the Saving process
         log.info(" Entity info " + save.toString());
-
-
     }
 }

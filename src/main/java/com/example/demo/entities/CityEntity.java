@@ -6,17 +6,21 @@ import lombok.Data;
 @Data
 @Table(name = "Cities Table")
 @Entity
-public class City {
+public class CityEntity {
 
     /**
      * NOTE: Amount of boiler-plate code can be significantly reduced by using the Lombok Getters&Setters
      */
 
-
     // id, timezone, name, cod, country, lon, lat
     @Id // this annotation will mark a column as a primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Coordinates coord; // maybe I should embed it
+
+    private String base;
 
     @Column
     private Long timezone;
@@ -36,13 +40,17 @@ public class City {
     @Column
     private Long lat;
 
+
+
+    /*
     // Empty Constructor
-    public City() {
+    public CityEntity() {
 
     }
 
+    /*
     // Constructor
-    public City(Long timezone, String name, Long cod, String country, Long lon, Long lat) {
+    public CityEntity(Long timezone, String name, Long cod, String country, Long lon, Long lat) {
         this.timezone = timezone;
         this.name = name;
         this.cod = cod;
@@ -107,6 +115,7 @@ public class City {
     public Long getLat() {
         return lat;
     }
+    */
 
 
 }

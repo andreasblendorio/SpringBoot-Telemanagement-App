@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table
 @Data
-public class DummyHobby {
-
+public class Coordinates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String hobby;
+
+    private Double lon;
+
+    private Double lat;
 }
