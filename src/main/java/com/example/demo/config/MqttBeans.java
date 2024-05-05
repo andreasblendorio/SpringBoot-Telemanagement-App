@@ -23,6 +23,7 @@ import org.springframework.messaging.MessagingException;
  * the Channels: Inbound + Outbound
  * the Message Handler
  */
+
 @Configuration
 public class MqttBeans {
 

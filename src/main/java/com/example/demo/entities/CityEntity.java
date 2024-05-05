@@ -3,6 +3,8 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Table(name = "Cities Table")
 @Entity
@@ -12,7 +14,7 @@ public class CityEntity {
      * NOTE: Amount of boiler-plate code can be significantly reduced by using the Lombok Getters&Setters
      */
 
-    // id, timezone, name, cod, country, lon, lat
+    // id, coord, timezone, name, country, base
     @Id // this annotation will mark a column as a primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,25 +22,34 @@ public class CityEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private Coordinates coord; // maybe I should embed it
 
-    private String base;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "weather_data_id")
+    private List<Weather> weather;
 
-    @Column
+    @Column(name = "Timezone")
     private Long timezone;
 
-    @Column
+    @Column(name = "City name")
     private String name;
 
-    @Column
-    private Long cod;
-
-    @Column
+    @Column(name = "Country")
     private String country;
 
-    @Column
-    private Long lon;
+    @Column(name = "Base")
+    private String base;
 
-    @Column
-    private Long lat;
+    @OneToOne(cascade = CascadeType.ALL)
+    private MainData main;
+
+    @Column(name = "Visibility")
+    private Integer visibility;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Wind wind;
+
+    @Column(name = "Dt")
+    private Long dt;
+
 
 
 
