@@ -22,7 +22,7 @@ public class CityEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private Coordinates coord; // maybe I should embed it
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL) // mapped by ?
     @JoinColumn(name = "weather_data_id")
     private List<Weather> weather;
 
