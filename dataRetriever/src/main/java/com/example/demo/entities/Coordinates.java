@@ -7,6 +7,7 @@ import lombok.Data;
 @Table(name = "Coordinates Table")
 @Entity
 public class Coordinates {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

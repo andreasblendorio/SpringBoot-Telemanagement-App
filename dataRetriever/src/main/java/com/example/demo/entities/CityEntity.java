@@ -2,6 +2,8 @@ package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -19,9 +21,13 @@ public class CityEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Getter
+    @Setter
     @OneToOne(cascade = CascadeType.ALL)
     private Coordinates coord; // maybe I should embed it
 
+    @Getter
+    @Setter
     @OneToMany(cascade = CascadeType.ALL) // mapped by ?
     @JoinColumn(name = "weather_data_id")
     private List<Weather> weather;
@@ -38,20 +44,21 @@ public class CityEntity {
     @Column(name = "Base")
     private String base;
 
+    @Getter
+    @Setter
     @OneToOne(cascade = CascadeType.ALL)
     private MainData main;
 
     @Column(name = "Visibility")
     private Integer visibility;
 
+    @Getter
+    @Setter
     @OneToOne(cascade = CascadeType.ALL)
     private Wind wind;
 
     @Column(name = "Dt")
     private Long dt;
-
-
-
 
     /*
     // Empty Constructor
@@ -128,5 +135,5 @@ public class CityEntity {
     }
     */
 
-
+//created timestamp
 }

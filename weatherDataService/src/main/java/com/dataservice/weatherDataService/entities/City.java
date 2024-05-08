@@ -1,4 +1,4 @@
-package com.dataservice.weatherDataService;
+package com.dataservice.weatherDataService.entities;
 
 public class City {
     private String cityName;
