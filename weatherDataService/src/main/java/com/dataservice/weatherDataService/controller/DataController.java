@@ -6,38 +6,37 @@ import com.dataservice.weatherDataService.entities.CityEntity;
 import com.dataservice.weatherDataService.entities.MainData;
 import com.dataservice.weatherDataService.entities.Weather;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/data")
 public class DataController {
 
     // Wiring the Repo
-    @Autowired
     private CityWeatherRepo cityWeatherRepo;
 
+    public DataController(CityWeatherRepo cityWeatherRepo) {
+        this.cityWeatherRepo = cityWeatherRepo;
+    }
+
     // Wiring the Entities
-    @Autowired
     private CityEntity cityEntity;
 
-    @Autowired
     private MainData main;
 
     //jackson
-    @Autowired
     private Weather weather;
-
 
     @GetMapping("/")
     public String index() {
         return "start";
     }
 
-    // GET Endpoint
+    // GET Endpoint(s)
     @GetMapping(path = "/hello") // endpoint not compliant with the naming convention
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String sayHello() {
@@ -49,17 +48,15 @@ public class DataController {
     public List<Double> getTemperatureData() {
         // Access temperature data through CityEntity
         return cityWeatherRepo.findAll().stream()
-                .map(CityEntity::getMain)  // Get WeatherData object
-                .map(MainData::getTemp)    // Extract temperature from MainData
-                .toList();
+                .map(cityEntity -> cityEntity.getMain().getTemp()) // Extract temperature from MainData
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/humidity")
     public List<Integer> getHumidityData() {
         // Access humidity data through CityEntity
         return cityWeatherRepo.findAll().stream()
-                .map(CityEntity::getMain)    // Get WeatherData object
-                .map(MainData::getHumidity)  // Extract humidity from MainData
+                .map(cityEntity -> cityEntity.getMain().getHumidity()) // Extract humidity from MainData
                 .toList();
     }
 
@@ -74,6 +71,5 @@ public class DataController {
         return "Request Accepted and message is : " + dummyCity.toString();
         // we can also pass an obj rather than a string, as long as it will be defined in another Class file
     }
-
 
 }
