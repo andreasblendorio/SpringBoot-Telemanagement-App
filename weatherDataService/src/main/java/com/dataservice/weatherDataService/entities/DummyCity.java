@@ -1,6 +1,6 @@
 package com.dataservice.weatherDataService.entities;
 
-public class City {
+public class DummyCity {
     private String cityName;
 
     private Long cityLongitude;
