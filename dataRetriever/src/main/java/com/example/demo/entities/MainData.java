@@ -19,13 +19,13 @@ public class MainData {
     private Double temp;
 
     @Column(name = "Feels Like")
-    private Double feelsLike;
+    private Double feels_like;
 
     @Column(name = "Minimum Temperature")
-    private Double tempMin;
+    private Double temp_min;
 
     @Column(name = "Maximum Temperature")
-    private Double tempMax;
+    private Double temp_max;
 
     @Column(name = "Pressure")
     private Integer pressure;
@@ -34,8 +34,8 @@ public class MainData {
     private Integer humidity;
 
     @Column(name = "Sea Level")
-    private Integer seaLevel;
+    private Integer sea_evel;
 
     @Column(name = "Ground Level")
-    private Integer grndLevel;
+    private Integer grnd_level;
 }

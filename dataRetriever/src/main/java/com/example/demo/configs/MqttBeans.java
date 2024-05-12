@@ -72,7 +72,7 @@ public class MqttBeans {
                 if (topic.equals("weather-data")) {
                     System.out.println("Here's the topic");
                 }
-                System.out.println(message.getPayload()); // printing any msg that comes in thi ch
+                System.out.println(message.getPayload()); // printing any msg that comes in the ch
             }
         };
     }

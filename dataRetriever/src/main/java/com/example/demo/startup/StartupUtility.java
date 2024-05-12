@@ -2,9 +2,12 @@ package com.example.demo.startup;
 
 import com.example.demo.entities.CityEntity;
 import com.example.demo.repos.CityWeatherRepo;
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.java.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
