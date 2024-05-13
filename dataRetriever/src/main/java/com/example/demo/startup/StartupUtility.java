@@ -11,6 +11,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Component;
 
@@ -47,46 +48,10 @@ public class StartupUtility implements CommandLineRunner {
         // Checking the Saving process
         log.info(" Entity info " + save.toString());
     }
+
 }
 
-/*  @Override
-    public void run(String... args) throws Exception {
 
-        // Listen for messages on the inbound channel
-        mqttInputChannel.subscribe(new MessageListener<Message<?>>() {
-            @Override
-            public void onMessage(Message<?> message) {
-                if (message != null) {
-                    String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
-                    if (topic.equals("weather-data")) {
-                        String payload = (String) message.getPayload();
-                        processWeatherData(payload);
-                    }
-                }
-            }
-        });
 
-        // This line can be removed now, as we're no longer using hardcoded JSON
-        // String json = ...;
 
-        // Keepalive, waiting indefinitely for messages (you might want to use a different approach)
-        while (true) {
-            Thread.sleep(1000);
-        }
-    }
-
-    private void processWeatherData(String payload) {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-        try {
-            CityEntity city = mapper.readValue(payload, CityEntity.class);
-            CityEntity savedEntity = repo.save(city);
-            log.info("Saved city data: " + savedEntity);
-        } catch (Exception e) {
-            log.error("Error parsing or saving city data: " + e.getMessage());
-        }
-    }
-}
-*/
 

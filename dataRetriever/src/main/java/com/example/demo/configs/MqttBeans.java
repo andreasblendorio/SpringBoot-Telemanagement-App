@@ -68,11 +68,15 @@ public class MqttBeans {
         return new MessageHandler() {
             @Override
             public void handleMessage(Message<?> message) throws MessagingException {
+
+                // Topic
                 String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString(); // retrieving the topic from the message header
                 if (topic.equals("weather-data")) {
-                    System.out.println("Here's the topic");
+                    System.out.println("Here's the topic: " + topic); // printing out the topic
                 }
-                System.out.println(message.getPayload()); // printing any msg that comes in the ch
+                // Payload
+                String payload = message.getPayload().toString();
+                System.out.println("Here's the payload: " + payload); // printing out any msg that comes in the ch
             }
         };
     }
@@ -89,7 +93,7 @@ public class MqttBeans {
     public MessageHandler mqttOutbound() {
         MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler("serverOut", mqttClientFactory());
         messageHandler.setAsync(true); // so that the client will always be up and listening
-        messageHandler.setDefaultTopic("#");
+        messageHandler.setDefaultTopic("weather-data");
         messageHandler.setDefaultRetained(false);
 
         return messageHandler;
