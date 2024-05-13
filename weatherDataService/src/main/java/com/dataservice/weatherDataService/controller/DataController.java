@@ -9,6 +9,7 @@ import com.dataservice.weatherDataService.entities.Weather;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,10 +44,9 @@ public class DataController {
         return "Hello from the Controller";
     }
 
-
     @GetMapping("/temperature")
     public List<Double> getTemperatureData() {
-        // Access temperature data through CityEntity
+        // Access temperature data via CityEntity
         return cityWeatherRepo.findAll().stream()
                 .map(cityEntity -> cityEntity.getMain().getTemp()) // Extract temperature from MainData
                 .collect(Collectors.toList());
@@ -54,7 +54,7 @@ public class DataController {
 
     @GetMapping("/min-temperature")
     public List<Double> getMinTemperatureData() {
-        // Access minimum temperature data through CityEntity
+        // Access minimum temperature data via CityEntity
         return cityWeatherRepo.findAll().stream()
                 .map(cityEntity -> cityEntity.getMain().getTemp_min()) // Extract minimum temperature from MainData
                 .collect(Collectors.toList());
@@ -62,7 +62,7 @@ public class DataController {
 
     @GetMapping("/avg-min-temperature")
     public Double getAverageMinTemperature() {
-        // Access avg minimum temperature data through CityEntity
+        // Access avg minimum temperature data via CityEntity
         List<Double> minTemperatures = getMinTemperatureData();
 
         // Calculate the average of minimum temperatures
@@ -77,9 +77,39 @@ public class DataController {
         }
     }
 
+    @GetMapping("/avg-min-temperature-last-hour")
+    public Double getAverageMinTemperatureLastHour() {
+        // Current hour
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        // Going back 60 mins
+        LocalDateTime oneHourAgo = currentTime.minusHours(1);
+
+        // Filtering entities to obtain the one with a timestamp from the last hour
+        List<Double> minTemperaturesLastHour = cityWeatherRepo.findAll().stream()
+                .filter(cityEntity -> {
+                    // Comparing the entity timestamp with the time of one hour ago
+                    LocalDateTime entityTimestamp = cityEntity.getTimestamp();
+                    return entityTimestamp.isAfter(oneHourAgo) && entityTimestamp.isBefore(currentTime);
+                })
+                .map(cityEntity -> cityEntity.getMain().getTemp_min()) // Retrieving the minimum temperature
+                .collect(Collectors.toList());
+
+        // Calculating the min_temp avg
+        if (!minTemperaturesLastHour.isEmpty()) {
+            double averageMinTemperatureLastHour = minTemperaturesLastHour.stream()
+                    .mapToDouble(Double::doubleValue)
+                    .average()
+                    .getAsDouble();
+            return averageMinTemperatureLastHour;
+        } else {
+            return null; // Returning null if there's no data
+        }
+    }
+
     @GetMapping("/max-temperature")
     public List<Double> getMaxTemperatureData() {
-        // Access maximum temperature data through CityEntity
+        // Access maximum temperature data via CityEntity
         return cityWeatherRepo.findAll().stream()
                 .map(cityEntity -> cityEntity.getMain().getTemp_max()) // Extract maximum temperature from MainData
                 .collect(Collectors.toList());
@@ -87,7 +117,7 @@ public class DataController {
 
     @GetMapping("/avg-max-temperature")
     public Double getAverageMaxTemperature() {
-        // Access avg maximum temperature data through CityEntity
+        // Access avg maximum temperature data via CityEntity
         List<Double> maxTemperatures = getMaxTemperatureData();
 
         // Calculate the average of maximum temperatures
@@ -104,7 +134,7 @@ public class DataController {
 
     @GetMapping("/humidity")
     public List<Integer> getHumidityData() {
-        // Access humidity data through CityEntity
+        // Access humidity data via CityEntity
         return cityWeatherRepo.findAll().stream()
                 .map(cityEntity -> cityEntity.getMain().getHumidity()) // Extract humidity from MainData
                 .toList();

@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Data
@@ -58,7 +61,19 @@ public class CityEntity {
     private Wind wind;
 
     @Column(name = "Dt")
-    private Long dt;
+    private int dt;
+
+    // getTimestamp method
+    public LocalDateTime getTimestamp() {
+
+        // Converting Unix timestamp to an instant
+        Instant instant = Instant.ofEpochSecond(dt);
+
+        // Obtain a LocalDateTime from the instant by means of an offset
+        LocalDateTime timestamp = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
+
+        return timestamp;
+    }
 
     /*
     // Empty Constructor

@@ -34,7 +34,7 @@ public class MainData {
     private Integer humidity;
 
     @Column(name = "Sea Level")
-    private Integer sea_evel;
+    private Integer sea_level;
 
     @Column(name = "Ground Level")
     private Integer grnd_level;
