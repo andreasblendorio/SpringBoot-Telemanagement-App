@@ -4,12 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
-
 @Data
 @Table(name = "cities_table")
 @Entity
@@ -38,7 +36,7 @@ public class CityEntity {
     @Column(name = "timezone")
     private Long timezone;
 
-    @Column(name = "city_name")
+    @Column(name = "city_name", unique = true)
     private String name;
 
     @Column(name = "country")

@@ -39,7 +39,7 @@ public class CityEntity {
     @Column(name = "Timezone")
     private Long timezone;
 
-    @Column(name = "city_name")
+    @Column(name = "city_name", unique = true)
     private String name;
 
     @Column(name = "country")
