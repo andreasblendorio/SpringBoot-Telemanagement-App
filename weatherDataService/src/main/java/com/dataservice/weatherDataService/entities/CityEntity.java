@@ -17,6 +17,7 @@ public class CityEntity {
 
     /**
      * NOTE: Amount of boiler-plate code can be significantly reduced by using the Lombok Getters&Setters
+     * Adding @NoArgsConstructor ny Lombok may help when dealing with xml
      */
 
     // id, coord, timezone, name, country, base

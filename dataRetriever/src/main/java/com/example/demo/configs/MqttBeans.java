@@ -27,7 +27,7 @@ import org.springframework.messaging.MessagingException;
 @Configuration
 public class MqttBeans {
 
-    // Client Factory
+    // Client Factory (factory configs)
     public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
         MqttConnectOptions options = new MqttConnectOptions();
@@ -44,7 +44,7 @@ public class MqttBeans {
         return factory;
     }
 
-    // Inbound Ch
+    // Inbound Ch (Subscribing)
     @Bean
     public MessageChannel mqttInputChannel() {
         return new DirectChannel();
@@ -81,7 +81,7 @@ public class MqttBeans {
         };
     }
 
-    // Outbound Ch
+    // Outbound Ch (Publishing)
     @Bean
     public MessageChannel mqttOutboundChannel() {
         return new DirectChannel();
