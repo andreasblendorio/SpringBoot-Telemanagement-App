@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController // by using @RestController instead of vanilla @Controller and @ResponseBody, it will applied by default on all resources in that controller
-@RequestMapping(path = "/data")
+@RequestMapping(path = "/api")
 public class DataController {
 
     // Wiring the Repo
@@ -26,9 +26,7 @@ public class DataController {
 
     // Wiring the Entities
     private CityEntity cityEntity;
-
     private MainData main;
-
     private Weather weather;
 
     // Root Endpoint
@@ -129,6 +127,36 @@ public class DataController {
             return averageMaxTemperature;
         } else {
             return null; // Return null if there is no data
+        }
+    }
+
+    @GetMapping("/avg-max-temperature-last-hour")
+    public Double getAverageMaxTemperatureLastHour() {
+        // Current hour
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        // Going back 60 mins
+        LocalDateTime oneHourAgo = currentTime.minusHours(1);
+
+        // Filtering entities to obtain the one with a timestamp from the last hour
+        List<Double> minTemperaturesLastHour = cityWeatherRepo.findAll().stream()
+                .filter(cityEntity -> {
+                    // Comparing the entity timestamp with the time of one hour ago
+                    LocalDateTime entityTimestamp = cityEntity.getTimestamp();
+                    return entityTimestamp.isAfter(oneHourAgo) && entityTimestamp.isBefore(currentTime);
+                })
+                .map(cityEntity -> cityEntity.getMain().getTemp_max()) // Retrieving the minimum temperature
+                .collect(Collectors.toList());
+
+        // Calculating the min_temp avg
+        if (!minTemperaturesLastHour.isEmpty()) {
+            double averageMinTemperatureLastHour = minTemperaturesLastHour.stream()
+                    .mapToDouble(Double::doubleValue)
+                    .average()
+                    .getAsDouble();
+            return getAverageMaxTemperatureLastHour();
+        } else {
+            return null; // Returning null if there's no data
         }
     }
 

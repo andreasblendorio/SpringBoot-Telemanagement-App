@@ -11,7 +11,7 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Data
-@Table(name = "Cities Table")
+@Table(name = "cities_table")
 @Entity
 public class CityEntity {
 
@@ -39,13 +39,13 @@ public class CityEntity {
     @Column(name = "Timezone")
     private Long timezone;
 
-    @Column(name = "City name")
+    @Column(name = "city_name")
     private String name;
 
-    @Column(name = "Country")
+    @Column(name = "country")
     private String country;
 
-    @Column(name = "Base")
+    @Column(name = "base")
     private String base;
 
     @Getter
@@ -53,7 +53,7 @@ public class CityEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private MainData main;
 
-    @Column(name = "Visibility")
+    @Column(name = "visibility")
     private Integer visibility;
 
     @Getter
@@ -61,7 +61,7 @@ public class CityEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private Wind wind;
 
-    @Column(name = "Dt")
+    @Column(name = "dt")
     private int dt;
 
     // getTimestamp method

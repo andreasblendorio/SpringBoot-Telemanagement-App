@@ -10,13 +10,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Component;
 
+
 // Implementing CommandLineRunnerInterface to be init when proj is created
 @Component
 @Log
 public class StartupUtility implements CommandLineRunner {
 
     // Passing the json as a value to test the parsing logic
-    @Value("${demo.json.string}") private String json;
+    @Value("${demo.json.string}")
+    private String json;
 
     // Wiring the Inbound ch
     @Autowired
