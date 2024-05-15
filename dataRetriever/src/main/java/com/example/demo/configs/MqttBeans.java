@@ -2,6 +2,7 @@ package com.example.demo.configs;
 
 import com.example.demo.entities.CityEntity;
 import com.example.demo.repos.CityWeatherRepo;
+import com.example.demo.utils.MessageParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.java.Log;
@@ -24,9 +25,11 @@ import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Setting up MQTT Client connection configurations
+ * Setting up:
+ * the MQTT Client connection configurations
  * the Client Factory
  * the Channels: Inbound + Outbound
+ * the Parsing fn
  * the Message Handler
  */
 
@@ -73,25 +76,6 @@ public class MqttBeans {
     @Autowired
     private CityWeatherRepo repo;
 
-    // Parsing fn
-    public void Parser(String msg_payload) throws Exception{
-
-        // Init Obj Mapper instance
-        ObjectMapper mapper = new ObjectMapper();
-
-        // Avoiding failure in case of unrecognized fields during json mapping, a workaround may be the 'Mixin' features of the Jackson pckg
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-        // Getting the json + Converting into the City Class
-        CityEntity value = mapper.readValue(msg_payload, CityEntity.class); // replace json with payload // input: json in string format, output: OpenAPI/CityEntity (class)
-
-        // Saving
-        CityEntity save = repo.save(value);
-
-        // Checking the Saving process
-        log.info(" Entity info " + save.toString());
-    }
-
     // Msg Handler
     @Bean
     @ServiceActivator(inputChannel = "mqttInputChannel")
@@ -104,13 +88,18 @@ public class MqttBeans {
                 // Topic
                 String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString(); // retrieving the topic from the message header
                 if (topic.equals("weather-data")) {
-                    System.out.println("Here's the topic: " + topic); // printing out the topic
+                    System.out.println("The topic related to this message is: " + topic); // printing out the topic
                 }
                 // Payload
                 String payload = message.getPayload().toString();
-                System.out.println("Here's the payload: " + payload); // printing out any msg that comes in the ch
+                System.out.println("The message payload is: " + payload); // printing out any msg that comes in the ch
                 try {
-                    Parser(payload);
+                    // Parsing + Saving
+                    CityEntity value = MessageParser.parse(payload);
+                    CityEntity save = repo.save(value);
+
+                    // Checking the Saving process
+                    log.info(" Entity info " + save.toString());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

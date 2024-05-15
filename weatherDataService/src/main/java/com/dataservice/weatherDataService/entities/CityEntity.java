@@ -16,14 +16,18 @@ import java.util.List;
 public class CityEntity {
 
     /**
+     * Setting up:
+     * the CityEntity class declaration + the related "sub-entities"
+     * the getTimeStamp method
      * NOTE: Amount of boiler-plate code can be significantly reduced by using the Lombok Getters&Setters
-     * Adding @NoArgsConstructor by Lombok may help when dealing with xml
      */
 
-    // id, coord, timezone, name, country, base
-    //@Id // this annotation will mark a column as a primary key
+    // CityEntity Fields: timezone, id, name, cod(?), dt, (country, base)
+    // CityEntity Complex Objects: coord, weather, main, wind, (sys)
+
+    @Id // this annotation will mark a column as a primary key
     @Column(name = "city_id")
-    private Long id;
+    private Integer id;
 
     @Getter
     @Setter
@@ -39,7 +43,7 @@ public class CityEntity {
     @Column(name = "Timezone")
     private Long timezone;
 
-    @Column(name = "city_name", unique = true)
+    @Column(name = "city_name") // making it unique will drag the microservice in failure: "ERRORE: un valore chiave duplicato viola il vincolo univoco cities_table_city_name_key"
     private String name;
 
     @Column(name = "country")

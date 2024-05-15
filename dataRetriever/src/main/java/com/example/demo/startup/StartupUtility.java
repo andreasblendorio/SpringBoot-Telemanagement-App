@@ -1,4 +1,5 @@
 package com.example.demo.startup;
+
 import com.example.demo.entities.CityEntity;
 import com.example.demo.repos.CityWeatherRepo;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Component;
 
 
 // Implementing CommandLineRunnerInterface to be init when proj is created
-@Component
+
 @Log
 public class StartupUtility implements CommandLineRunner {
+
+    static String pippo;
+
 
     // Passing the json as a value to test the parsing logic
     @Value("${demo.json.string}")
