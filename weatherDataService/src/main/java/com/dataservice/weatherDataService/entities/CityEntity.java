@@ -17,13 +17,13 @@ public class CityEntity {
 
     /**
      * NOTE: Amount of boiler-plate code can be significantly reduced by using the Lombok Getters&Setters
-     * Adding @NoArgsConstructor ny Lombok may help when dealing with xml
+     * Adding @NoArgsConstructor by Lombok may help when dealing with xml
      */
 
     // id, coord, timezone, name, country, base
-    @Id // this annotation will mark a column as a primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    //@Id // this annotation will mark a column as a primary key
+    @Column(name = "city_id")
+    private Long id;
 
     @Getter
     @Setter
