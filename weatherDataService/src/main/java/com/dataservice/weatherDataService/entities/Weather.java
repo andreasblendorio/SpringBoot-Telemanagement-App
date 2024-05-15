@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Table(name = "Weather Table")
+@Table(name = "weather_table")
 @Entity
 public class Weather {
 
@@ -14,15 +14,15 @@ public class Weather {
 
     //private Integer weatherDataId;
 
-    @Column(name = "WeatherId")
+    @Column(name = "weatherId")
     private Integer weatherId;
 
-    @Column(name = "Main")
+    @Column(name = "main")
     private String main;
 
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "Icon")
+    @Column(name = "icon")
     private String icon;
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Table(name = "Main Data Table")
+@Table(name = "main_data_table")
 @Entity
 public class MainData {
 
@@ -15,27 +15,27 @@ public class MainData {
     @Column(name = "Weather Identifier")
     private Integer weatherDataId;
 
-    @Column(name = "Temperature")
+    @Column(name = "temperature")
     private Double temp;
 
-    @Column(name = "Feels Like")
+    @Column(name = "feels_like")
     private Double feels_like;
 
-    @Column(name = "Minimum Temperature")
+    @Column(name = "minimum_temperature")
     private Double temp_min;
 
-    @Column(name = "Maximum Temperature")
+    @Column(name = "maximum_temperature")
     private Double temp_max;
 
-    @Column(name = "Pressure")
+    @Column(name = "pressure")
     private Integer pressure;
 
-    @Column(name = "Humidity")
+    @Column(name = "humidity")
     private Integer humidity;
 
-    @Column(name = "Sea Level")
+    @Column(name = "sea_level")
     private Integer sea_level;
 
-    @Column(name = "Ground Level")
+    @Column(name = "ground_level")
     private Integer grnd_level;
 }

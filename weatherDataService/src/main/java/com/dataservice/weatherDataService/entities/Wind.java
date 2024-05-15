@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Table(name = "Wind Table")
+@Table(name = "wind_table")
 @Entity
 public class Wind {
 
@@ -12,12 +12,12 @@ public class Wind {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Speed")
+    @Column(name = "speed")
     private Double speed;
 
-    @Column(name = "Deg")
+    @Column(name = "deg")
     private Integer deg;
 
-    @Column(name = "Gust")
+    @Column(name = "gust")
     private Double gust;
 }
