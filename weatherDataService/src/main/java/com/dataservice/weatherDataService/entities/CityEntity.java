@@ -40,7 +40,7 @@ public class CityEntity {
     @JoinColumn(name = "weather_data_id")
     private List<Weather> weather;
 
-    @Column(name = "Timezone")
+    @Column(name = "timezone")
     private Long timezone;
 
     @Column(name = "city_name") // making it unique will drag the microservice in failure: "ERRORE: un valore chiave duplicato viola il vincolo univoco cities_table_city_name_key"
@@ -62,7 +62,7 @@ public class CityEntity {
 
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)  // key: city_id, dt --> join to city_id
     private Wind wind;
 
     @Column(name = "dt")

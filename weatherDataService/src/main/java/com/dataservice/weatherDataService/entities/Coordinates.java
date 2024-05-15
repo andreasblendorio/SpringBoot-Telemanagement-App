@@ -12,9 +12,9 @@ public class Coordinates {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Longitude")
+    @Column(name = "longitude")
     private Double lon;
 
-    @Column(name = "Latitude")
+    @Column(name = "latitude")
     private Double lat;
 }

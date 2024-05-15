@@ -82,7 +82,7 @@ public class MqttBeans {
     public MessageHandler handler() {
         return new MessageHandler() {
 
-            // Once a message is received, it has to be handled
+            // Handling msg, once it's received
             @Override
             public void handleMessage(Message<?> message) throws MessagingException {
                 // Topic
@@ -99,7 +99,7 @@ public class MqttBeans {
                     CityEntity save = repo.save(value);
 
                     // Checking the Saving process
-                    log.info(" Entity info " + save.toString());
+                    log.info("Entity info " + save.toString());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

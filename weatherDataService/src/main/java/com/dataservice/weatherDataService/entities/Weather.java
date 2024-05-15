@@ -14,7 +14,7 @@ public class Weather {
 
     //private Integer weatherDataId;
 
-    @Column(name = "weatherId")
+    @Column(name = "weather_id")
     private Integer weatherId;
 
     @Column(name = "main")
@@ -23,6 +23,6 @@ public class Weather {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "icon")
+    @Column(name = "icon") // this may be optional
     private String icon;
 }
