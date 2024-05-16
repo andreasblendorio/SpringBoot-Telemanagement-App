@@ -1,6 +1,5 @@
 package com.dataservice.weatherDataService.controller;
 
-import com.dataservice.weatherDataService.entities.DummyCity;
 import com.dataservice.weatherDataService.repos.CityWeatherRepo;
 import com.dataservice.weatherDataService.entities.CityEntity;
 import com.dataservice.weatherDataService.entities.MainData;
