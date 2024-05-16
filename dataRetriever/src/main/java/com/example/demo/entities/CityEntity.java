@@ -31,13 +31,13 @@ public class CityEntity {
     @Getter
     @Setter
     @OneToOne(cascade = CascadeType.ALL)
-    private Coordinates coord; // maybe I should embed it
+    private CoordinatesEntity coord; // maybe I should embed it
 
     @Getter
     @Setter
     @OneToMany(cascade = CascadeType.ALL) // mapped by ?
     @JoinColumn(name = "weather_data_id")
-    private List<Weather> weather;
+    private List<WeatherEntity> weather;
 
     @Column(name = "timezone")
     private Long timezone;
@@ -54,7 +54,7 @@ public class CityEntity {
     @Getter
     @Setter
     @OneToOne(cascade = CascadeType.ALL)
-    private MainData main;
+    private MainDataEntity main;
 
     @Column(name = "visibility")
     private Integer visibility;
@@ -62,7 +62,7 @@ public class CityEntity {
     @Getter
     @Setter
     @OneToOne(cascade = CascadeType.ALL)
-    private Wind wind;
+    private WindEntity wind;
 
     @Column(name = "dt")
     private int dt;

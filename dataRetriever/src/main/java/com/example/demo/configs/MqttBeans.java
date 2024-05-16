@@ -29,7 +29,7 @@ import org.springframework.messaging.MessagingException;
  * the MQTT Client connection configurations
  * the Client Factory
  * the Channels: Inbound + Outbound
- * the Parsing fn
+ *
  * the Message Handler
  */
 

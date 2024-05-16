@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.dataservice.weatherDataService.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Table(name = "main_data_table")
 @Entity
-public class MainData {
+public class MainDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

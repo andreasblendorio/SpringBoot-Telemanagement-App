@@ -4,20 +4,17 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Table(name = "wind_table")
+@Table(name = "coordinates_table")
 @Entity
-public class Wind {
+public class CoordinatesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "speed")
-    private Double speed;
+    @Column(name = "longitude")
+    private Double lon;
 
-    @Column(name = "deg")
-    private Integer deg;
-
-    @Column(name = "gust")
-    private Double gust;
+    @Column(name = "latitude")
+    private Double lat;
 }

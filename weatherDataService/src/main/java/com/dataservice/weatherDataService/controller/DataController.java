@@ -2,8 +2,8 @@ package com.dataservice.weatherDataService.controller;
 
 import com.dataservice.weatherDataService.repos.CityWeatherRepo;
 import com.dataservice.weatherDataService.entities.CityEntity;
-import com.dataservice.weatherDataService.entities.MainData;
-import com.dataservice.weatherDataService.entities.Weather;
+import com.dataservice.weatherDataService.entities.MainDataEntity;
+import com.dataservice.weatherDataService.entities.WeatherEntity;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +25,8 @@ public class DataController {
 
     // Wiring the Entities
     private CityEntity cityEntity;
-    private MainData main;
-    private Weather weather;
+    private MainDataEntity main;
+    private WeatherEntity weather;
 
     // Root Endpoint
     @GetMapping("/")
@@ -41,7 +41,7 @@ public class DataController {
         return "Hello from the Controller";
     }
 
-    @GetMapping("/temperature")
+    @GetMapping("/temperatures") // resources always in plural
     public List<Double> getTemperatureData() {
         // Access temperature data via CityEntity
         return cityWeatherRepo.findAll().stream()
@@ -49,7 +49,7 @@ public class DataController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/min-temperature")
+    @GetMapping("/min-temperatures")
     public List<Double> getMinTemperatureData() {
         // Access minimum temperature data via CityEntity
         return cityWeatherRepo.findAll().stream()
@@ -57,7 +57,7 @@ public class DataController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/avg-min-temperature")
+    @GetMapping("/avg-min-temperatures")
     public Double getAverageMinTemperature() {
         // Access avg minimum temperature data via CityEntity
         List<Double> minTemperatures = getMinTemperatureData();
@@ -74,7 +74,7 @@ public class DataController {
         }
     }
 
-    @GetMapping("/avg-min-temperature-last-hour")
+    @GetMapping("/avg-min-temperatures-last-hour")
     public Double getAverageMinTemperatureLastHour() {
         // Current hour
         LocalDateTime currentTime = LocalDateTime.now();
@@ -104,7 +104,7 @@ public class DataController {
         }
     }
 
-    @GetMapping("/max-temperature")
+    @GetMapping("/max-temperatures")
     public List<Double> getMaxTemperatureData() {
         // Access maximum temperature data via CityEntity
         return cityWeatherRepo.findAll().stream()
@@ -112,7 +112,7 @@ public class DataController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/avg-max-temperature")
+    @GetMapping("/avg-max-temperatures")
     public Double getAverageMaxTemperature() {
         // Access avg maximum temperature data via CityEntity
         List<Double> maxTemperatures = getMaxTemperatureData();
@@ -129,7 +129,7 @@ public class DataController {
         }
     }
 
-    @GetMapping("/avg-max-temperature-last-hour")
+    @GetMapping("/avg-max-temperatures-last-hour")
     public Double getAverageMaxTemperatureLastHour() {
         // Current hour
         LocalDateTime currentTime = LocalDateTime.now();
@@ -174,7 +174,7 @@ public class DataController {
         // we can also pass an obj rather than a string, as long as it will be defined in another Class file
     }
 
-    @PostMapping("/post-city")
+    @PostMapping("/post-cities")
     public String post(@RequestBody DummyCity dummyCity) {
         return "Request Accepted and message is : " + dummyCity.toString();
         // We can also pass an obj rather than a string, as long as it will be defined in another Class file

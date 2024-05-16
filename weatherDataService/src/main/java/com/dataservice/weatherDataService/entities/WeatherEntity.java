@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Table(name = "weather_table")
 @Entity
-public class Weather {
+public class WeatherEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
