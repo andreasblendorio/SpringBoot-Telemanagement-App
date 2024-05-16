@@ -14,7 +14,6 @@ public class MessageParser {
 
     // Parsing fn
     public static CityEntity parse(String msg_payload) throws Exception {
-
         // Init Obj Mapper instance
         ObjectMapper mapper = new ObjectMapper();
 

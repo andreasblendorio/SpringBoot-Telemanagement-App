@@ -9,16 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.messaging.MessageChannel;
-import org.springframework.stereotype.Component;
-
 
 // Implementing CommandLineRunnerInterface to be init when proj is created
-
 @Log
 public class StartupUtility implements CommandLineRunner {
-
-    static String pippo;
-
 
     // Passing the json as a value to test the parsing logic
     @Value("${demo.json.string}")
@@ -33,7 +27,6 @@ public class StartupUtility implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
         // Init Obj Mapper instance
         ObjectMapper mapper = new ObjectMapper();
 

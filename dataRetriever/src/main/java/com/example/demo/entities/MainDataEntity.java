@@ -10,7 +10,7 @@ public class MainDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "weather_id")
     private Integer weatherDataId;

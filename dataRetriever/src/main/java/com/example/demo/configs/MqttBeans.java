@@ -3,8 +3,6 @@ package com.example.demo.configs;
 import com.example.demo.entities.CityEntity;
 import com.example.demo.repos.CityWeatherRepo;
 import com.example.demo.utils.MessageParser;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.java.Log;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,6 @@ import org.springframework.messaging.MessagingException;
  * the MQTT Client connection configurations
  * the Client Factory
  * the Channels: Inbound + Outbound
- *
  * the Message Handler
  */
 

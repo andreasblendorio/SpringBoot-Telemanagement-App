@@ -10,7 +10,7 @@ public class CoordinatesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "longitude")
     private Double lon;

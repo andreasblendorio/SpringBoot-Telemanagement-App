@@ -27,7 +27,7 @@ public class CityEntity {
 
     @Id // this annotation will mark a column as a primary key
     @Column(name = "city_id")
-    private Integer id;
+    private Integer id; // using the 'Integer' class (wrapper) instead of classic 'int' primitive, to provide more flexibility
 
     @Getter
     @Setter
@@ -66,11 +66,10 @@ public class CityEntity {
     private WindEntity wind;
 
     @Column(name = "dt")
-    private int dt;
+    private Integer dt;
 
     // getTimestamp method
     public LocalDateTime getTimestamp() {
-
         // Converting Unix timestamp to an instant
         Instant instant = Instant.ofEpochSecond(dt);
 

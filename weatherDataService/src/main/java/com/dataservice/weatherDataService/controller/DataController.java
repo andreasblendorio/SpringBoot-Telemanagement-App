@@ -4,10 +4,8 @@ import com.dataservice.weatherDataService.repos.CityWeatherRepo;
 import com.dataservice.weatherDataService.entities.CityEntity;
 import com.dataservice.weatherDataService.entities.MainDataEntity;
 import com.dataservice.weatherDataService.entities.WeatherEntity;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -167,6 +165,7 @@ public class DataController {
                 .toList();
     }
 
+    /*
     // POST Endpoint(s)
     @PostMapping("/post")
     public String post(@RequestBody String message) {
@@ -179,5 +178,5 @@ public class DataController {
         return "Request Accepted and message is : " + dummyCity.toString();
         // We can also pass an obj rather than a string, as long as it will be defined in another Class file
     }
-
+    */
 }

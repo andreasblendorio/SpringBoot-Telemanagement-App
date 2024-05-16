@@ -2,7 +2,6 @@ package com.dataservice.weatherDataService.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 @Data
 @Table(name = "weather_table")
 @Entity
@@ -10,9 +9,7 @@ public class WeatherEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    //private Integer weatherDataId;
+    private Integer id;
 
     @Column(name = "weather_id")
     private Integer weatherId;
