@@ -85,18 +85,18 @@ public class MqttBeans {
                 // Topic
                 String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString(); // retrieving the topic from the message header
                 if (topic.equals("weather-data")) {
-                    System.out.println("The topic related to this message is: " + topic); // printing out the topic
+                    System.out.println("The topic related to this message is: \n" + topic); // printing out the topic
                 }
                 // Payload
                 String payload = message.getPayload().toString();
-                System.out.println("The message payload is: " + payload); // printing out any msg that comes in the ch
+                System.out.println("The message payload is: \n" + payload); // printing out any msg that comes in the ch
                 try {
                     // Parsing + Saving
                     CityEntity value = MessageParser.parse(payload);
                     CityEntity save = repo.save(value);
 
                     // Checking the Saving process
-                    log.info("Entity info " + save.toString());
+                    log.info("\nEntity infos for the parsed payload: \n" + save.toString());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
