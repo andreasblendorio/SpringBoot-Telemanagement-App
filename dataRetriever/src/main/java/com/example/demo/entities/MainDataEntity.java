@@ -12,9 +12,6 @@ public class MainDataEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "weather_id")
-    private Integer weatherDataId;
-
     @Column(name = "temperature")
     private Double temp;
 

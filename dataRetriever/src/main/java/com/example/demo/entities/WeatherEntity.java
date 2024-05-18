@@ -9,11 +9,7 @@ import lombok.Data;
 public class WeatherEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "weather_id")
-    private Integer weatherId;
 
     @Column(name = "main")
     private String main;

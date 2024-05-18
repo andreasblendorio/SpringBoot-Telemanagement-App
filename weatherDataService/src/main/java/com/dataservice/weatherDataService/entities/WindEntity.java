@@ -2,6 +2,7 @@ package com.dataservice.weatherDataService.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 @Data
 @Table(name = "wind_table")
 @Entity
