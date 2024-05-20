@@ -138,7 +138,7 @@ public class DataController {
     public List<Double> getMaxTemperatureData() {
         // Accesses maximum temperature data via CityEntity
         return cityWeatherRepo.findAll().stream()
-                .map(cityEntity -> cityEntity.getMain().getTemp_max()) // Extract maximum temperature from MainData
+                .map(cityEntity -> cityEntity.getMain().getTemp_max()) // Extracts maximum temperature from MainData
                 .collect(Collectors.toList());
     }
 

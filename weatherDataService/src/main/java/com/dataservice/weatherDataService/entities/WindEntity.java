@@ -3,6 +3,11 @@ package com.dataservice.weatherDataService.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Sets up:
+ * the WindEntity class declaration
+ */
+
 @Data
 @Table(name = "wind_table")
 @Entity
