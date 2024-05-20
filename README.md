@@ -33,3 +33,38 @@ The second microservice, `weatherDataService`, is in charge of exposing a **REST
 ```git
 https://github.com/andreasblendorio/SpringBoot-Telemanagement-App.git
 ```
+
+## Structure :open_file_folder:
+
+Project files for the first microservice are structured as follows:
+
+```text
+└── SpringBootTelemanagementApp
+       ├── .idea
+       └── dataRetriever [jpa]  
+           ├── .mvn
+           └── src
+               └── main
+                   ├── java
+                   │   └── com.example.demo                          
+                   │       ├── configs          
+                   │       │   └── MqttBeans           
+                   │       ├── entities  
+                   │       │   ├── CityEntity
+                   │       │   ├── CoordinatesEntity
+                   │       │   ├── MainDataEntity
+                   │       │   ├── WeatherEntity
+                   │       │   └── WindEntity   
+                   │       ├── gateway
+                   │       │   └── MqttGateway     
+                   │       ├── repos                               
+                   │       │   └── CityWeatherRepo          
+                   │       ├── startup
+                   │       │   └── StartupUtility         
+                   │       ├── utils
+                   │       │   └── MessageParser 
+                   │       └── JpaApplication                   
+                   └── resources
+                       └── application.properties  
+  
+```
