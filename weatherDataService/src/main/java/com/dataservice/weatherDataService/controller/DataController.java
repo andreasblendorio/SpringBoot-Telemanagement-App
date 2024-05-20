@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  * the /avg-max-temperatures endpoint,
  * the /avg-max-temperatures-last-hour endpoint,
  * the /humidity endpoint,
- * the /download-weather-summary
+ * the /download-weather-summary returning the responses in a .xml file
  * As long as the corresponding methods: getTemperatureData, getMinTemperatureData, getAverageMinTemperatureData, getAverageMinTemperatureLastHour, getMaxTemperatureData, getAverageMaxTemperatureData, getAverageMaxTemperatureLastHour, getHumidityData, getWeatherDataSummary.
  */
 
