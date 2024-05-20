@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * Sets up:
- * the CityEntity class declaration + the related "sub-entities"
- * the getTimeStamp method
+ * the CityEntity class declaration + the related "sub-entities",
+ * the getTimeStamp method.
  * NOTE: Amount of boilerplate code can be significantly reduced by using the Lombok Getters&Setters
  */
 

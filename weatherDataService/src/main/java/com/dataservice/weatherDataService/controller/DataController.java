@@ -18,7 +18,20 @@ import java.util.stream.Collectors;
 
 /**
  * Sets up:
- * the RestController layers' logic, exposing the main endpoints
+ * the RestController layers' logic, exposing the main endpoints:
+ * the /api path,
+ * the / root endpoint,
+ * the /hello welcoming endpoint,
+ * the /temperatures endpoint,
+ * the /min-temperatures endpoint,
+ * the /avg-min-temperatures endpoint,
+ * the /avg-min-temperatures-last-hour endpoint,
+ * the /max-temperatures endpoint,
+ * the /avg-max-temperatures endpoint,
+ * the /avg-max-temperatures-last-hour endpoint,
+ * the /humidity endpoint,
+ * the /download-weather-summary
+ * As long as the corresponding methods: getTemperatureData, getMinTemperatureData, getAverageMinTemperatureData, getAverageMinTemperatureLastHour, getMaxTemperatureData, getAverageMaxTemperatureData, getAverageMaxTemperatureLastHour, getHumidityData, getWeatherDataSummary.
  */
 
 @RestController // by using @RestController instead of vanilla @Controller and @ResponseBody, it will be applied by default on all resources in that controller

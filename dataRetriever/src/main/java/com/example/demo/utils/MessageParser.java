@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MessageParser {
 
     /**
+     * Sets up:
+     * the Parsing Function to enable deserialization of the brokers' selected topic messages
      * NOTE: It is good practice to include in the method name the type of obj that the method will return/handle.
      * In this case, the 'parse' method accepts a message payload and returns a CityEntity.
      * Thereby, the 'CityEntity' obj will then be manipulated by the message handler of the 'MqttBeans' class
@@ -17,10 +19,12 @@ public class MessageParser {
         // Init Obj Mapper instance
         ObjectMapper mapper = new ObjectMapper();
 
-        // Avoiding failure in case of unrecognized fields during json mapping, a workaround may be the 'Mixin' feature from the Jackson pckg
+        // Avoids failure in case of unrecognized fields during json mapping, a workaround may be the 'Mixin' feature from the Jackson pckg
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        // Retrieving the payload + Converting into the CityEntity class
+        // Retrieves the payload + Converting into the CityEntity class
         return mapper.readValue(msg_payload, CityEntity.class);
     }
 }
+
+
