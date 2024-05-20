@@ -2,6 +2,12 @@ package com.dataservice.weatherDataService.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+/**
+ * Sets up:
+ * the MainDataEntity class declaration
+ */
+
 @Data
 @Table(name = "main_data_table")
 @Entity
@@ -10,9 +16,6 @@ public class MainDataEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "weather_id")
-    private Integer weatherDataId;
 
     @Column(name = "temperature")
     private Double temp;

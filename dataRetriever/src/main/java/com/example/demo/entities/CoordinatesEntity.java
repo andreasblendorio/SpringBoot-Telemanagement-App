@@ -3,14 +3,14 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
-@Table(name = "coordinates_table")
-@Entity
-public class CoordinatesEntity {
+/**
+ * Sets up:
+ * the CoordinatesEntity class declaration
+ */
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@Data
+@Embeddable
+public class CoordinatesEntity {
 
     @Column(name = "longitude")
     private Double lon;

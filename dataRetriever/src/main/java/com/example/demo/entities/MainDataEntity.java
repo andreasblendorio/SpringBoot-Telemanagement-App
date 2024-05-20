@@ -3,6 +3,11 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Sets up:
+ * the MainDataEntity class declaration
+ */
+
 @Data
 @Table(name = "main_data_table")
 @Entity
