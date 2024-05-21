@@ -13,7 +13,7 @@ The two microservices are:
 1. `dataRetriever`
 2. `weatherDataService`
    
-The first microservice, [`/dataRetriever`](/SpringBoot-Telemanagement-App/tree/master/dataRetriever), is responsible for connecting to the MQTT Broker (mosquitto in this case) and listening to the **weather-data** channel, where, at time intervals of 10 min, weather data in json format related to 5 specific cities are uploaded.
+The first microservice, [`/dataRetriever`](dataRetriever), is responsible for connecting to the MQTT Broker (mosquitto in this case) and listening to the **weather-data** channel, where, at time intervals of 10 min, weather data in json format related to 5 specific cities are uploaded.
 Specifically, this data will be parsed and using the jpa and hibernate libraries, stored in the corresponding tables of a relational database.
 
 The second microservice, [`/weatherDataService`](/SpringBoot-Telemanagement-App/tree/master/weatherDataService), is in charge of exposing a **REST** layer through which the user can query the database and request different types of data, selecting, among others, the possibility that the data are returned in xml format (as required by the **CIM** protocol)
