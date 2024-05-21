@@ -49,9 +49,9 @@ Project files for the two microservices are structured as follows:
        │           ├── java
        │           │   └── com.example.demo                          
        │           │       ├── configs          
-       │           │       │   └── MqttBeans           
+       │           │       │   └── MqttBeans            // Broker configs
        │           │       ├── entities  
-       │           │       │   ├── CityEntity
+       │           │       │   ├── CityEntity          
        │           │       │   ├── CoordinatesEntity
        │           │       │   ├── MainDataEntity
        │           │       │   ├── WeatherEntity
@@ -101,7 +101,9 @@ Project files for the two microservices are structured as follows:
 ```
 
 ## Further explanations:
+### dataRetriever
 The functionality of this microservice is related to the arrival of messages on the broker, it sets up a channel called "weather-data" where messages containing weather data with respect to 5 cities in json format arrive continuously, one for each city selected in the auxiliary microservice today (external to this application).
+More precisely, by means of the [`/MqttBeans`](dataRetriever/src/main/java/com/example/demo/configs/MqttBeans.java) class, which handles the configurations for connecting to the broker and setting up the Inbound and Outbound channels, the Client can connect to the broker and subscribe to the channel of interest (i.e. 'weather-data') thus receiving the json messages.
 The aforementioned jsons are retrieved from the [openweathermap.org](https://openweathermap.org/api) API service and are composed as follows:
 ```json
 {
@@ -151,3 +153,8 @@ The aforementioned jsons are retrieved from the [openweathermap.org](https://ope
     "cod": 200
 }
 ```
+Once this receiving process is established, the parsing function defined in [`/MessageParser`](dataRetriever/src/main/java/com/example/demo/utils/MessageParser.java) (that relies on the Object Mapper) which is responsible of mapping the json's fields to the specific [`/CityEntity`](dataRetriever/src/main/java/com/example/demo/entities/CityEntity.java), will then be invoked by the `MessageHandler` method of [`/MqttBeans`](dataRetriever/src/main/java/com/example/demo/configs/MqttBeans.java) enabling the the payloads serialization for each message that are seamlessly received on the topic and saving of the latters in the corresponding [`/CityWeatherRepo`](dataRetriever/src/main/java/com/example/demo/repos/CityWeatherRepo.java).
+
+### weatherDataService
+The logic of this microservice orbits around the [`DataController`](weatherDataService/src/main/java/com/dataservice/weatherDataService/controller/DataController.java) class which implements a REST layer using the Data Transfer Object (DTO) design pattern in order to facilitate the transfer of weather data between the application layers. This controller is annotated with `@RestController` and `@RequestMapping` to define a base path for all endpoints, ensuring that all paths are exposed under the `/api` path. The endpoints include capabilities for retrieving temperature data, minimum and maximum temperatures, average temperatures over various periods, and humidity data. In addition, the controller provides an endpoint for downloading a weather summary in XML format. The use of DTOs, such as [`WeatherDataDTO`](weatherDataService/src/main/java/com/dataservice/weatherDataService/dto/WeatherDataDTO.java), allows multiple related data to be encapsulated in a single object, which is useful for constructing comprehensive summaries and maintaining a clear separation between data access and presentation layers. The controller interacts with the same entities used in the [`/dataRetriever`](dataRetriever) microserviceand with the [`/CityWeatherRepo`](dataRetriever/src/main/java/com/example/demo/repos/CityWeatherRepo.java) repository to retrieve the necessary data, processes it, and returns it in a structured format through the defined endpoints.
+
