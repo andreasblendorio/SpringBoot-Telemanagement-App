@@ -41,30 +41,61 @@ Project files for the first microservice are structured as follows:
 ```text
 └── SpringBootTelemanagementApp
        ├── .idea
-       └── dataRetriever [jpa]  
-           ├── .mvn
-           └── src
-               └── main
-                   ├── java
-                   │   └── com.example.demo                          
-                   │       ├── configs          
-                   │       │   └── MqttBeans           
-                   │       ├── entities  
-                   │       │   ├── CityEntity
-                   │       │   ├── CoordinatesEntity
-                   │       │   ├── MainDataEntity
-                   │       │   ├── WeatherEntity
-                   │       │   └── WindEntity   
-                   │       ├── gateway
-                   │       │   └── MqttGateway     
-                   │       ├── repos                               
-                   │       │   └── CityWeatherRepo          
-                   │       ├── startup
-                   │       │   └── StartupUtility         
-                   │       ├── utils
-                   │       │   └── MessageParser 
-                   │       └── JpaApplication                   
-                   └── resources
-                       └── application.properties  
-  
+       ├── dataRetriever [jpa]
+       │   ├── .idea 
+       │   ├── .mvn
+       │   └── src
+       │       └── main
+       │           ├── java
+       │           │   └── com.example.demo                          
+       │           │       ├── configs          
+       │           │       │   └── MqttBeans           
+       │           │       ├── entities  
+       │           │       │   ├── CityEntity
+       │           │       │   ├── CoordinatesEntity
+       │           │       │   ├── MainDataEntity
+       │           │       │   ├── WeatherEntity
+       │           │       │   └── WindEntity   
+       │           │       ├── gateway
+       │           │       │   └── MqttGateway     
+       │           │       ├── repos                               
+       │           │       │   └── CityWeatherRepo          
+       │           │       ├── startup
+       │           │       │   └── StartupUtility         
+       │           │       ├── utils
+       │           │       │   └── MessageParser 
+       │           │       └── JpaApplication                   
+       │           └── resources
+       │               └── application.properties  
+       ├── .gitignore
+       ├── mvnw
+       ├── mvnw.cmd
+       ├── pom.xml
+       │
+       ├── weatherDataService
+       │   ├── .idea 
+       │   ├── .mvn
+       │   └── src
+       │       └── main
+       │           ├── java
+       │           │   └── com.dataservice.weatherDataService                   
+       │           │       ├── controller          
+       │           │       │   └── DataController
+       │           │       ├── dto
+       │           │       │   └── WeatherDataDTO           
+       │           │       ├── entities  
+       │           │       │   ├── CityEntity
+       │           │       │   ├── CoordinatesEntity
+       │           │       │   ├── MainDataEntity
+       │           │       │   ├── WeatherEntity
+       │           │       │   └── WindEntity    
+       │           │       ├── repos                               
+       │           │       │   └── CityWeatherRepo          
+       │           │       └── WeatherDataServiceApplication                 
+       │           └── resources
+       │               └── application.properties  
+       ├── .gitignore
+       ├── mvnw
+       ├── mvnw.cmd
+       └── pom.xml
 ```
