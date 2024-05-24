@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 /**
  * Sets up:
  * the RestController layers' logic, exposing the main endpoints:
- * the /api path,
- * the / root endpoint,
+ * the /api base-path,
+ * the /root endpoint,
  * the /hello welcoming endpoint,
  * the /temperatures endpoint,
  * the /min-temperatures endpoint,
