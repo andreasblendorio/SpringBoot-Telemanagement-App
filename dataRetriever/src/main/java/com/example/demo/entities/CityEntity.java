@@ -63,23 +63,23 @@ public class CityEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private WindEntity wind;
 
-    @Column(name = "dt")
+    @Column(name = "dt") // TODO: put it in a separate entity so that can be connected to each city by means of a city_id Foreign Key
     private Integer dt;
 
     // getTimestamp method
     public LocalDateTime getTimestamp() {
 
-        // Converts Unix timestamp to an instant
+        // Converts Unix timestamp to an instant (instant: `YYYY-MM-DDTHH:mm:ssUTC`)
         Instant instant = Instant.ofEpochSecond(dt);
 
-        // Obtains a LocalDateTime from the instant by means of an offset
+        // Obtains a LocalDateTime obj (timestamp) from the instant by means of an offset (timestamp: `YYYY-MM-DDTHH:mm`)
         LocalDateTime timestamp = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
 
         return timestamp;
     }
 
     /*
-    Classic development w/out the lombok pckg
+    Classic development w/out the lombok pkg
     // Empty Constructor
 
     public CityEntity() {
