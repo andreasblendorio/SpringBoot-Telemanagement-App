@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -36,6 +37,7 @@ import java.util.stream.Collectors;
 
 @RestController // by using @RestController instead of vanilla @Controller and @ResponseBody, it will be applied by default on all resources in that controller
 @RequestMapping(path = "/api")
+@Validated
 public class DataController {
 
     // Wires the Repo

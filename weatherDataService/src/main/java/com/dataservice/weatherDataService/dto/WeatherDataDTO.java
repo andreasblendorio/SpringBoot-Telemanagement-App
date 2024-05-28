@@ -1,5 +1,7 @@
 package com.dataservice.weatherDataService.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,21 +20,27 @@ import java.util.List;
 @NoArgsConstructor
 public class WeatherDataDTO {
 
-    private List<Double> temperatures;
+    @NotEmpty(message = "Temperatures list cannot be empty")
+    private List<@NotNull Double> temperatures;
 
-    private List<Double> minTemperatures;
+    @NotEmpty(message = "Min temperatures list cannot be empty")
+    private List<@NotNull Double> minTemperatures;
 
-    @Positive(message = "Average minimum temperature must be positive")
+    @NotNull(message = "Average Minimum temperatures cannot be null")
     private Double averageMinTemperature;
 
+    // @NotNull(message = "Average Minimum temperatures of last hour cannot be null")
     //private Double averageMinTemperatureLastHour;
 
-    private List<Double> maxTemperatures;
+    @NotEmpty(message = "Max temperatures list cannot be empty")
+    private List<@NotNull Double> maxTemperatures;
 
-    @Positive(message = "Average minimum temperature must be positive")
+    @NotNull(message = "Average Maximum temperature cannot be null")
     private Double averageMaxTemperature;
 
+    // @NotNull(message = "Average Maximum temperatures of last hour cannot be null")
     //private Double averageMaxTemperatureLastHour;
 
-    private List<Integer> humidity;
+    @NotEmpty(message = "Humidity list cannot be empty")
+    private List<@NotNull Integer> humidity;
 }
