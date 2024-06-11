@@ -10,19 +10,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.messaging.MessageChannel;
 
-// Implementing CommandLineRunnerInterface to be init when proj is created
+// Implements CommandLineRunnerInterface to be init when proj is created
 @Log
 public class StartupUtility implements CommandLineRunner {
 
-    // Passing the json as a value to test the parsing logic
+    // Passes the json as a value to test the parsing logic
     @Value("${demo.json.string}")
     private String json;
 
-    // Wiring the Inbound ch
+    // Wires the Inbound ch
     @Autowired
     private MessageChannel mqttInputChannel;
 
-    // Wiring the Repo
+    // Wires the Repo
     @Autowired private CityWeatherRepo repo;
 
     @Override
@@ -30,16 +30,16 @@ public class StartupUtility implements CommandLineRunner {
         // Init Obj Mapper instance
         ObjectMapper mapper = new ObjectMapper();
 
-        // Avoiding failure in case of unrecognized fields during json mapping, a workaround may be the 'Mixin' features of the Jackson pckg
+        // Avoids failure in case of unrecognized fields during json mapping, a workaround may be the 'Mixin' features of the Jackson pckg
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        // Getting the json + Converting into the City Class
-        CityEntity value = mapper.readValue(json, CityEntity.class); // replace json with payload // input: json in string format, output: OpenAPI/CityEntity (class)
+        // Gets the json + Converts into the City Class
+        CityEntity value = mapper.readValue(json, CityEntity.class); // TODO: replace json with payload // input: json in string format, output: OpenAPI/CityEntity (class)
 
-        // Saving
+        // Save
         CityEntity save = repo.save(value);
 
-        // Checking the Saving process
+        // Checks the Saving process
         log.info(" Entity info " + save.toString());
     }
 }

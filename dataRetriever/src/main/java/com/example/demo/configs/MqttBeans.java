@@ -23,7 +23,7 @@ import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Setting up:
+ * Sets up:
  * the MQTT Client connection configurations
  * the Client Factory
  * the Channels: Inbound + Outbound
@@ -46,7 +46,7 @@ public class MqttBeans {
         //options.setPassword(password.toCharArray());
         options.setCleanSession(true);
 
-        // Plugging the options in the factory obj
+        // Plugs the options in the factory obj
         factory.setConnectionOptions(options);
 
         return factory;
@@ -69,7 +69,7 @@ public class MqttBeans {
         return adapter;
     }
 
-    // Wiring City repo
+    // Wires City repo
     @Autowired
     private CityWeatherRepo repo;
 
@@ -79,7 +79,7 @@ public class MqttBeans {
     public MessageHandler handler() {
         return new MessageHandler() {
 
-            // Handling msg, once it's received
+            // Handles msg, once it's received
             @Override
             public void handleMessage(Message<?> message) throws MessagingException {
                 // Topic
@@ -91,11 +91,11 @@ public class MqttBeans {
                 String payload = message.getPayload().toString();
                 System.out.println("The message payload is: \n" + payload); // printing out any msg that comes in the ch
                 try {
-                    // Parsing + Saving
+                    // Parse + Save
                     CityEntity value = MessageParser.parse(payload);
                     CityEntity save = repo.save(value);
 
-                    // Checking the Saving process
+                    // Checks the Saving process
                     log.info("\nEntity infos for the parsed payload: \n" + save.toString());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
